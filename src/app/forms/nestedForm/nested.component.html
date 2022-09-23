@@ -1,0 +1,42 @@
+
+<form [formGroup]="nestedForm">
+
+      <select formControlName="country">
+            <option [ngValue]="null" disabled>Select Country</option>
+            <option *ngFor="let country of countries" [ngValue]="country.id">{{country.name}}</option>
+          </select>
+        
+    <div formArrayName="skills">
+        <button (click)="addSkill()">Add Skill</button>
+        <div *ngFor="let skill of skills().controls; let skillIndex =  index">
+            Skill NO {{skillIndex + 1}} 
+            <input type="text" [formControlName]="skillIndex">
+            <button (click)="removeSkill(skillIndex)">Remover Skill</button>
+        </div>
+    </div>
+    <input type="button" value="Submit">
+</form>
+{{this.nestedForm.value | json}}
+<!-- 
+<h1>Welcome to Nested Form 1</h1>
+<form [formGroup]="nestedForm" (ngSubmit)="onSubmit()">
+    FirstName: <input type="text" placeholder="Enter First Name" formControlName ="firstname"> 
+    
+    <br>
+    <button (click)="addSkill()">Add Skill</button>
+    <div formArrayName="skills">
+        <div *ngFor="let item of Skills.controls; let i =  index">
+            <div [formGroupName]="i">
+                Skill: <input type="text" formControlName="skill">
+                Experience in years: <input type="number" formControlName="experience">
+               
+                <button (click)="removeSkill(i)">Remove</button>
+
+            </div>
+        </div>
+    </div>
+
+    <input type="submit" value="Submit Form">
+</form>
+
+{{this.nestedForm.value | json}} -->

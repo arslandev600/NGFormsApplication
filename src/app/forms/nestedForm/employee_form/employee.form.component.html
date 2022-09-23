@@ -1,0 +1,34 @@
+
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+
+    UserName: <input type="text" formControlName="username">
+    Date: <input type="date" formControlName="date">
+
+    <input type="button" value="Add Employee" (click)="addEmployee()">
+    <div formArrayName="employees">
+        <div *ngFor="let employee of employees().controls; let empIndex = index">
+            <div [formGroupName]="empIndex">
+                First Name: <input type="text" formControlName="firstname">
+                Last Name: <input type="text" formControlName="lastname">
+                <input type="button" value="Remove Employee" (click)="removeEmployee(empIndex)">
+                
+    
+                <input type="button" value="Add Skill" (click)="addEmployeeSkill(empIndex)">
+                <div formArrayName="skills">
+                    <div *ngFor="let skill of employeeSkills(empIndex).controls; let skillIndex = index">
+                        <div [formGroupName]="skillIndex">
+                            skill Name : <input type="text" formControlName="skill">
+                            Experince : <input type="text" formControlName="exp">
+                            <input type="button" value="Remove Skill" (click)="removeEmployeeSkill(empIndex,skillIndex)">
+                        </div>
+
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+{{this.employeeForm.value | json}}

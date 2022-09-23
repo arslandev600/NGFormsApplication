@@ -1,0 +1,85 @@
+
+
+<form [formGroup]="registerForm" (ngSubmit)="onSumit()">
+
+    <input type="text" id="firstname" name="firstname" placeholder="First Name"  formControlName="firstname">
+    <span *ngIf="!registerForm.get('firstname')?.valid && (registerForm.get('firstname')?.dirty || registerForm.get('firstname')?.touched)" >
+       <!-- Errors List : {{registerForm.get('firstname')?.errors | json}} -->
+        <div *ngIf="registerForm.get('firstname')?.errors?.['required']">
+            first name is requierd
+        </div>
+    </span>
+    <input type="text" id="lastname" name="lastname" placeholder="Last Name" formControlName="lastname">
+    <span *ngIf="!lastname.valid && (lastname?.dirty || lastname?.touched)" >
+        <div [hidden]="!lastname.errors?.['required']">
+            Last name is requierd
+        </div>
+    </span>
+    <input type="number" id="age" placeholder="age" name="age" formControlName="age">
+    <span *ngIf="!age.valid && (age?.dirty || age?.touched)" >
+        {{age.errors | json}}
+        <div [hidden]="!age.errors?.['required']">
+            Age is requierd
+        </div>
+        
+        <div [hidden]="!age.errors?.['gte']">
+            Value should be 10
+        </div>
+    </span>
+    <input type="text" id="email" placeholder="Email" name="email" formControlName="email">
+    <input type="text" id="password" name="password" formControlName="password" />
+    <span *ngIf="!password.valid && (password?.dirty || password?.touched)" >
+        {{password.errors | json}}
+        <div [hidden]="!password.errors?.['required']">
+            Age is requierd
+        </div>
+        
+        <div [hidden]="!registerForm.errors?.['noMatch']">
+            Password Does Not Match
+        </div>
+    </span>
+    <input type="text" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword">  
+    <span *ngIf="!confirmPassword?.valid && (confirmPassword?.dirty || confirmPassword?.touched)" >
+ 
+        <div [hidden]="!confirmPassword.errors?.['required']">
+            password is requierd
+        </div>
+        
+        <div [hidden]="!registerForm.errors?.['noMatch']">
+            Password Does Not Match
+        </div>
+    </span>
+    Select Gender:
+    <input type="radio"  name="gender" formControlName="gender" value="Male"> Male
+    <input type="radio"  name="gender" formControlName="gender" value="Female"> Female
+    <input type="radio"  name="gender" formControlName="gender" value="Other"> Other
+
+    <input type="datetime" id="dateOfBirth" name="dateOfBirth" formControlName="dateOfBirth">
+
+    <div formGroupName="address">
+        <input type="text" id="street" name="street" formControlName="street">
+        <input type="text" id="city" name="city" formControlName="city">
+        <select name="country" id="country" formControlName="country">
+            <option value="Pakistan">Pakistan</option>
+            <option value="India">India</option>
+            <option value="Australia">Australia</option>
+            <option value="England">England</option>
+        </select>
+        <input type="number" id="zipcode" placeholder="Zip Code" name="zipcode" formControlName="zipcode">
+    </div>
+
+    <input type="submit" [disabled]="!registerForm.valid" value="Submit Form" name="" id=""> 
+
+
+
+    {{registerForm.errors | json}}
+</form>
+
+
+<div>
+    <button (click)="setValue()">Set Form Values</button>
+    <button (click)="setAddress()">Set Form Group Value</button>
+    <button (click)="setSingleValue()">Set Form Single Value</button>
+    <button (click)="withOutOnlySelf()">Without Only Self</button>
+    <button (click)="withOnlySelf()">withOnlySelf</button>
+</div>

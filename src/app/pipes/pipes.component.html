@@ -1,0 +1,29 @@
+<div class="hello">
+
+    <p>
+     Male TItle:     {{data.firstname | uppercase | pipetitle:'M'}} <br>
+     Female Title:   {{data.firstname | uppercase | pipetitle:'F'}} <br>
+     No Title:    {{data.firstname | uppercase | pipetitle}} <br>
+    </p>
+    <p>
+
+        LastName {{data.lastname | lowercase}}
+    </p>
+    <p>
+        Amount {{data.amount | currency:'PKR'}}
+    </p>
+    <p>
+        Dateofbirth {{data.dateofbirth}}
+    </p>
+</div>
+
+
+ASYNC PIPE
+
+<div *ngIf="(this. obsValue | async);else elseBlock">
+    {{this. obsValue | async}}
+</div>
+
+<ng-template #elseBlock>
+    Loading Data
+</ng-template>

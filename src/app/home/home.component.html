@@ -1,0 +1,31 @@
+
+
+<header>
+    <nav>
+  
+    </nav>
+</header>
+  
+  <main [mclass]="color">
+    <div class="section1" >
+        <form #form="ngForm" (keyup.alt.enter)="saved()">
+            <div>
+                Enter Name<input type="text" [(ngModel)]="color" name="name1" id="">
+            </div>
+            
+            <div>
+                Enter Name<input type="text" ngModel name="name2" id="">
+            </div>
+            <div>
+                Enter Name<input type="text" ngModel name="name3" id="">
+            </div>
+            {{form.value | json}}
+        </form>
+    </div>
+
+  </main>
+
+  <footer>
+    {{strValu}}
+    <button (click)="changeValue()">Change Value</button>
+  </footer>

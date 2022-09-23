@@ -1,0 +1,186 @@
+<!-- <section class="h-100 bg-dark">
+    <div class="container py-5 h-100">
+        <form #signupForm="ngForm" (ngSubmit)="submitForm(signupForm)" >
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+            <div class="card card-registration my-4">
+                <div class="row g-0">
+                <div class="col-xl-6 d-none d-xl-block">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                    alt="Sample photo" class="img-fluid image"
+                    style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;"
+                     />
+                    <input type="file" accept="images" ngModel name="image" value="Upload Image" class="btn" (change)="changeListner($event)">
+                </div>
+                <div class="col-xl-6">
+                    <div class="card-body p-md-5 text-black">
+                    <h3 class="mb-5 text-uppercase">Student registration form</h3>
+    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                            <input type="text" id="form3Example1m" class="form-control form-control-lg" #firstname="ngModel" 
+                             ngModel name="firstname"
+                             required minlength="5" maxlength="15" pattern="^[a-zA-Z]+$" 
+                             />
+                            <label class="form-label" for="form3Example1m">First name</label>
+                            <div class="error" *ngIf="!firstname?.valid && (firstname?.dirty || firstname.touched)">
+                                <label *ngIf="firstname?.errors?.['required']"  class="form-label" for="form3Example1m">Required</label>
+                                <label *ngIf="firstname?.errors?.['minlength']" for="form3Example1m">Length Must be {{firstname?.errors?.['minlength'].requiredLength}}</label>
+                                <label *ngIf="firstname?.errors?.['pattern']" for="form3Example1m">Cannot Include Numbers</label>
+                            </div>
+                            
+                        </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                            <input type="text" id="form3Example1n" class="form-control form-control-lg" #lastname="ngModel" 
+                            required minlength="5" maxlength="15" pattern="^[a-zA-Z]+$"  
+                            ngModel name="lastname"
+                            appEmailvalidator  
+                            />
+                            <label class="form-label" for="form3Example1n">Last name</label>
+                            <span *ngIf="lastname.hasError('emailvalidator')">  
+                                Please provide a valid email address  
+                              </span> 
+                            <div class="error" *ngIf="!lastname?.valid && (lastname?.dirty || lastname.touched)">
+                                <label *ngIf="lastname?.errors?.['required']"  class="form-label" for="form3Example1m">Required</label>
+                                <label *ngIf="lastname?.errors?.['minlength']" for="form3Example1m">Length Must be 5</label>
+                                <label *ngIf="lastname?.errors?.['pattern']" for="form3Example1m">Cannot Include Numbers</label>
+                            </div>
+                        </div>
+                       </div>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <input type="text" id="form3Example97" class="form-control form-control-lg" ngModel name="Email" #email="ngModel" email required />
+                        <label class="form-label" for="form3Example97">Email ID</label>
+                        <div class="error" *ngIf="!email?.valid && (email?.dirty || email.touched)">
+                            <label *ngIf="email?.errors?.['email']"  class="form-label" for="form3Example1m">Required</label>
+                            <label *ngIf="lastname?.errors?.['pattern']" for="form3Example1m">Cannot Include Numbers</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-outline col-md-6">
+                            <input type="text" id="form3Example97" class="form-control form-control-lg" required minlength="5"
+                            #password="ngModel"
+                            ngModel name="password" />
+                            <label class="form-label" for="form3Example97">Password</label>
+                            <div class="error" *ngIf="!password?.valid && (password?.dirty || password.touched)">
+                                <label *ngIf="password?.errors?.['required']"  class="form-label" for="form3Example1m">Required</label>
+                                <label *ngIf="password?.errors?.['minlength']" for="form3Example1m">Password Length Must be  {{password?.errors?.['minlength'].requiredLength}}</label>
+                            </div>
+                        </div>
+                        <div class="form-outline col-md-6">
+                            <input type="text" id="form3Example97" class="form-control form-control-lg" ngModel name="confirmpassword" 
+                            #confirmPswrd="ngModel" 
+                            appPasswordvalidator = "password" 
+                            />
+                            <label class="form-label" for="form3Example97">Confirm Password</label>
+                            {{confirmPswrd.errors | json}}
+                            <div class="error" *ngIf="!confirmPswrd?.valid && (confirmPswrd?.dirty || confirmPswrd?.touched)">
+                                {{confirmPswrd.errors | json}}
+                                <label *ngIf="confirmPswrd?.errors?.['required']"  class="form-label" for="form3Example1m">Required</label>
+                                <label *ngIf="confirmPswrd?.errors?.['pswrdMatch']" for="form3Example1m">Confirm Password Does Not Match</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+    
+                        <h6 class="mb-0 me-4">Gender: </h6>
+    
+                        <div class="form-check form-check-inline mb-0 me-4">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
+                            value="Female" ngModel />
+                        <label class="form-check-label" for="femaleGender">Female</label>
+                        </div>
+    
+                        <div class="form-check form-check-inline mb-0 me-4">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
+                            value="Male" ngModel />
+                        <label class="form-check-label" for="maleGender">Male</label>
+                        </div>
+    
+                        <div class="form-check form-check-inline mb-0">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
+                            value="Other" ngModel />
+                        <label class="form-check-label" for="otherGender">Other</label>
+                        </div>
+    
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input type="date" id="form3Example9" class="form-control form-control-lg" />
+                        <label class="form-label" for="form3Example9">DOB</label>
+                    </div>
+                
+    
+                    <div class="form-outline" ngModelGroup="address">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" id="form3Example8" class="form-control form-control-lg" ngModel name="street" />
+                                <label class="form-label" for="form3Example8">Street</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="form3Example8" class="form-control form-control-lg" ngModel  name="city" />
+                                <label class="form-label" for="form3Example8">city</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <select class="form-control" ngModel name="country">
+                                    <option value="1">State</option>
+                                    <option value="2">Pakistan</option>
+                                    <option value="3">Option 2</option>
+                                    <option value="4">Option 3</option>
+                                </select>
+                                <label class="form-label" for="form3Example8">Country</label>
+                             </div>
+                             <div class="col-md-6">
+                                 <input type="text" id="form3Example8" class="form-control form-control-lg" ngModel name="zipcode" />
+                                 <label class="form-label" for="form3Example8">Zip Code</label>
+                             </div>
+                        </div>
+                    </div>
+    
+                    <div class="d-flex justify-content-end pt-3">
+                        <button type="button" class="btn btn-light btn-lg" (click)="signupForm.reset()">Reset all</button>
+                        <button type="button" class="btn btn-warning btn-lg ms-2">Submit form</button>
+                    </div>
+    
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            {{signupForm.value | json}}
+        </div>
+    </form>
+    </div>
+
+</section> -->
+
+
+
+<!-- 1-> Create Form using ngForm -->
+<form #myForm="ngForm" (ngSubmit)="submitForm(myForm.value)">
+    <div>
+        <!-- creating form control using ngDirective or [(ngModel)]  -->
+        
+        First Name: <input type="text" ngModel name="firstName" #fname="ngModel" required minlength="5" maxlength="5">
+        <!-- orr -->
+        <div *ngIf="fname?.errors">
+            <div *ngIf="fname?.errors?.['required']">Firt Name Required</div>
+            <div *ngIf="fname?.errors?.['minlength']">Min lenth must be {{fname?.errors?.['minlength'].requiredLength}}</div>
+        </div>
+    </div>
+    <div>
+        Last Name: <input type="text" #lstname="ngModel" name="lastname" [(ngModel)]="lastname" required>
+        {{lstname?.errors | json}}
+        <!-- orr -->
+        <!-- <div *ngIf="lastname?.errors">
+            <div *ngIf="fname?.errors?.['required']">Firt Name Required</div>
+            <div *ngIf="fname?.errors?.['minlength']">Min lenth must be {{fname?.errors?.['minlength'].requiredLength}}</div>
+        </div> -->
+    </div>
+</form>
